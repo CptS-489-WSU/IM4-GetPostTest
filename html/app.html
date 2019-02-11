@@ -1,0 +1,62 @@
+<!-- CptS 489, Spring 2019
+     Project: Related IM3
+     File: app.html
+     This file defines skeleton code for an app to test out the web service API to be used for IM3.
+-->
+
+<html>
+    <head>
+        <base target="_top">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+      </head>
+      <body>
+        <center>
+        <h3>Test Speedgolf Tournament Database Web Services API</h3>
+        <h5>CptS 489 IM4</h5>
+        <br>
+        </center>
+        <label for="url">URL of Web Services API:</label>
+        <input type="text" name="url" id="url" size="80">
+      <br/>
+        <h3>Add a Player</h3>
+        <form id="addPlayerForm">
+          <label for="playerName">Player Name:</label>
+            <input type="text" name="playerName" id="playerName">
+          <br/>
+          <input type="submit" id="submitAddPlayerForm" class="btn btn-primary" value="Add Player">
+        </form>
+       <br>  
+       <h3>Get a Player's Data</h3>
+        <form id="getPlayerDataForm">
+          <label for="playerId">Player ID:</label>
+            <input type="text" name="playerId" id="playerId"/>
+          <br/>
+          <input type="submit" id="submitGetPlayerDataForm" class="btn btn-primary" value="Get Player Data">
+        </form>
+       <br> 
+       <h3>Submit a Player's Hole Data</h3>
+       <form id="postPlayerDataForm">
+          <label for="playerId">Player ID:</label>
+            <input type="text" name="playerId" id="playerId2"/>
+          <br>
+          <label for="holeNum">Hole Number:</label>
+            <input type="text" name="holeNum" id="holeNum"/>
+          <br>
+          <label for="holeStr">Strokes:</label>
+            <input type="text" name="holeStr" id="strokes"/>
+          <br>
+          <label for="holeTime">Time:</label>
+            <input type="text" name="holeTime" id="time"/>
+          <br>
+          <input type="submit" id="submitPlayerDataForm" class="btn btn-primary" value="Post Player Data">
+        </form>
+     
+        <?!= include('js/eventHandlers')?>
+   </body>
+</html>

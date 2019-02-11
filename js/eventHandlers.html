@@ -1,0 +1,56 @@
+<script>
+    //addPlayerCallback -- When returning from a GET request to add a player to the tournament,
+    //display an alert box with the returned object and then populate the player ID fields with the ID
+    //returned, if any
+    function addPlayerCallback(data, status) {
+      alert("The GET request to add a player returned: \n" + JSON.stringify(data) + "\nStatus: " + status);
+      $("#playerId").val(data.playerId);
+      $("#playerId2").val(data.playerId);
+    }
+
+    //getPlayerDatacallback -- When returning from a GET request to get player data,
+    //display an alert box with the returned object.
+    function getPlayerDataCallback(data, status) {
+      alert("The GET request to get player data returned: \n" + JSON.stringify(data) + "\nStatus: " + status);
+    }
+
+     //postPlayerDataCallback -- When returning from a POST request to submit player data,
+     //display an alert box with the return value.
+     function postPlayerDataCallback(response, status) {
+      alert("The POST request to submit player data returned: \n" + response + "\nStatus: " + status);
+    }
+       
+    //ADDPLAYERFORM SUBMIT -- When the user clicks the submit button for the addPlayerForm, 
+    //issue a getJSON call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this discussion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#addPlayerForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() +  "?playerName=" +  $("#playerName").val() + "&callback=?";
+      $.getJSON(url, addPlayerCallback);
+    });
+
+    //GETPLAYERDATAFORM SUBMIT -- When the user clicks the submit button for the getPlayerDataForm, 
+    //issue a getJSON call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this disucssion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#getPlayerDataForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() +  "?playerId=" +  $("#playerId").val() + "&callback=?";
+      $.getJSON(url, getPlayerDataCallback);
+    });
+
+    //POSTPLAYERDATAFORM SUBMIT -- When the user clicks the submit button for the postPlayerDataForm, 
+    //issue a post call using the web service URL supplied in the url item.
+    //We also supply a callback=? query param, per this disucssion:
+    //https://stackoverflow.com/questions/29525860/google-apps-script-cross-domain-requests-stopped-working
+    //Note: Error checking is intentionally NOT performed. If the url is invalid or missing, the GET request will obviously fail!
+    $("#postPlayerDataForm").submit(function(e) {
+      e.preventDefault(); //Don't permit normal behavior of submit button
+      var url =  $("#url").val() + "?" + $("#postPlayerDataForm").serialize();
+      alert("Posting url " + url)
+      $.post(url, postPlayerDataCallback);
+    });
+   </script>
